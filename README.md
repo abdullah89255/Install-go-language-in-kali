@@ -59,17 +59,58 @@ To install the Go programming language on Kali Linux, follow these steps:
    func main() {
        fmt.Println("Hello, Kali!")
    }
+ 
+### Why it happens
+
+* `~/.bashrc` is written for **Bash**.
+* If your current shell is **not Bash**, commands like `shopt` won’t exist.
+
+---
+
+### ✅ How to fix
+
+1. **Check your current shell:**
+
+   ```bash
+   echo $SHELL
    ```
+
+   If it prints `/bin/sh` or `/bin/dash`, that explains the error.
+
+2. **Switch to Bash temporarily:**
+
+   ```bash
+   bash
+   ```
+
+   Then run:
+
+   ```bash
+   source ~/.bashrc
+   ```
+
+3. **Make Bash your default shell (if you want):**
+
+   ```bash
+   chsh -s /bin/bash
+   ```
+
+   (Log out and back in after this.)
+
+---
+
+### Extra
+
+If you’re actually using **Zsh** (common in Kali and modern distros), you should put your configs in `~/.zshrc` instead of `~/.bashrc`.
+
+---
+
+👉 Do you want me to show you how to **move your `.bashrc` settings into `.zshrc`** so they work without switching shells?
+
    Run the program:
    ```bash
    go run $HOME/go/src/hello.go
    ```
    You should see `Hello, Kali!` as output.
 
-**Notes**:
-- Ensure you have `wget` installed (`sudo apt install wget`).
-- If you prefer, you can install Go via `apt` using `sudo apt install golang`, but this may provide an older version.
-- For the latest version, always download from the official site.
-- If you encounter permission issues, ensure you have appropriate sudo privileges.
 
-For further details, check the official Go documentation at https://go.dev/doc/install.
